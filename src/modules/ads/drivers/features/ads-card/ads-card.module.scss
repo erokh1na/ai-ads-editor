@@ -1,0 +1,82 @@
+@use "@/ui/utils/files/typography" as t;
+
+.card {
+  width: 100%;
+  max-width: 200px;
+
+  overflow: hidden;
+
+  background-color: #ffffff;
+
+  border: 1px solid #f0f0f0;
+  border-radius: 16px;
+}
+
+.cover {
+  display: block;
+  width: 100%;
+}
+
+.body {
+  padding: 16px;
+}
+
+.category {
+  position: relative;
+
+  width: fit-content;
+  margin-top: -30px;
+
+  background-color: #ffffff;
+
+  border: 1px solid #D9D9D9;
+  border-radius: 6px;
+  padding-inline: 12px;
+
+  @include t.body
+}
+
+.title {
+  margin-top: 10px;
+
+  @include t.h5
+}
+
+.price {
+  margin-top: 4px;
+
+  opacity: 0.45;
+
+  @include t.body-strong
+}
+
+.needs-revision {
+  position: relative;
+
+  margin-top: 4px;
+
+  padding: 2px 8px 2px 22px;
+
+  color: #FAAD14;
+
+  background-color: #F9F1E6;
+  border-radius: 8px;
+
+  @include t.body;
+
+  &::before {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+
+    width: 6px;
+    height: 6px;
+
+    background-color: #FAAD14;
+
+    border-radius: 50%;
+    transform: translateY(-50%);
+
+    content: '';
+  }
+}

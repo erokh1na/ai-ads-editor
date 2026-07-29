@@ -1,0 +1,7 @@
+@mixin active {
+  @media (hover: hover) {
+    &:active {
+      @content;
+    }
+  }
+}

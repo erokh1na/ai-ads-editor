@@ -1,17 +1,12 @@
 .layout {
   min-height: 100vh;
-}
 
-.sider {
-  width: 250px;
-}
-
-.menu {
-  min-height: 100%;
+  background-color: #F7F5F8;
 }
 
 .content {
+  width: var(--app-container-width);
+  max-width: var(--app-container-max-width);
+  margin: 0 auto;
   padding: 20px;
-
-  background: #F5F5F5;
 }
