@@ -1,12 +1,18 @@
-import { AppAd } from "@/modules/ads/domain/entities"
-import { AppAdsListOutput } from "@/modules/ads/domain/port"
-import { ServerAd, ServerAdsListResponse } from "./types"
+import { AppAd, AppAdCategory } from "@/modules/ads/domain/entities"
+import { AppAdsListInput, AppAdsListOutput } from "@/modules/ads/domain/port"
+import { ServerAdCategory, ServerAdsListParams, ServerAdsListResponse } from "./types"
 
-const categoryMap: Record<ServerAd["category"], AppAd["category"]> = {
+const categoryMap = {
   auto: "auto",
   electronics: "electro",
   real_estate: "realty",
-}
+} satisfies Record<ServerAdCategory, AppAdCategory>
+
+const reverseCategoryMap = {
+  auto: "auto",
+  electro: "electronics",
+  realty: "real_estate",
+} satisfies Record<AppAdCategory, ServerAdCategory>
 
 function toDomainAd(item: ServerAdsListResponse["items"][number]): AppAd {
   return {
@@ -24,5 +30,15 @@ export function toDomainAdsList(response: ServerAdsListResponse): AppAdsListOutp
     meta: {
       total: response.total,
     },
+  }
+}
+
+export function toServerAdsList(input: AppAdsListInput): ServerAdsListParams {
+  return {
+    q: input.search,
+    needsRevision: input.needsRevision,
+    categories: input.categories?.map((category) => reverseCategoryMap[category]).join(","),
+    sortColumn: input.sortColumn,
+    sortDirection: input.sortDirection,
   }
 }

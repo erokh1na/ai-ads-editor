@@ -1,3 +1,4 @@
 export * from "./ads-card"
+export * from "./ads-filter-bar"
 export * from "./ads-list"
-
+export * from "./ads-search-bar"

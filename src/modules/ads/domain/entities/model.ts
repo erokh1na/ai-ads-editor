@@ -1,8 +1,12 @@
+import { AD_CATEGORIES } from "@/modules/ads/domain/entities/constants"
+
+export type AppAdCategory = keyof typeof AD_CATEGORIES
+
 export interface AppAd {
   id: string
   title: string
   description?: string
   price: number
-  category: "auto" | "electro" | "realty"
-  needsRevision: boolean
+  category: AppAdCategory
+  needsRevision: true
 }

@@ -1,8 +1,20 @@
+export type ServerAdCategory = "auto" | "electronics" | "real_estate"
+
 export interface ServerAd {
   title: string
   price: number | null
-  category: "auto" | "electronics" | "real_estate"
-  needsRevision: boolean
+  category: ServerAdCategory
+  needsRevision: true
+}
+
+export interface ServerAdsListParams {
+  q?: string
+  limit?: number
+  skip?: number
+  needsRevision?: ServerAd["needsRevision"]
+  categories?: string
+  sortColumn?: "title" | "createdAt"
+  sortDirection?: "asc" | "desc"
 }
 
 export interface ServerAdsListResponse {
