@@ -10,6 +10,7 @@ export function useAdsList() {
     search: searchParams.get("search"),
     categories: (searchParams.get("categories")?.split(",") as AppAdCategory[]) ?? [],
     needsRevision: searchParams.get("needsRevision") === "true" || undefined,
+    sortDirection: (searchParams.get("sortDirection") as AppAdsListInput["sortDirection"]) || "desc",
   }
 
   const query = adsApiClient.useList(filters)

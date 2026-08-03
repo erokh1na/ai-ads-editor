@@ -63,6 +63,8 @@ interface ItemsGetRequest extends Fastify.RequestGenericInterface {
     skip?: string;
     categories?: string;
     needsRevision?: string;
+    sortColumn?: string;
+    sortDirection?: string;
   };
 }
 
@@ -93,9 +95,11 @@ fastify.get<ItemsGetRequest>('/items', request => {
 
         if (!sortDirection) return comparisonValue;
 
-        if (sortColumn === 'title') {
+        const effectiveSortColumn = sortColumn || 'createdAt';
+
+        if (effectiveSortColumn === 'title') {
           comparisonValue = item1.title.localeCompare(item2.title);
-        } else if (sortColumn === 'createdAt') {
+        } else if (effectiveSortColumn === 'createdAt') {
           comparisonValue =
             new Date(item1.createdAt).valueOf() -
             new Date(item2.createdAt).valueOf();

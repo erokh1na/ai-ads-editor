@@ -1,4 +1,6 @@
 export * from "./ads-card"
 export * from "./ads-filter-bar"
 export * from "./ads-list"
-export * from "./ads-search-bar"
+export * from "./ads-search"
+export * from "./ads-sort"
+export * from "./ads-tool-bar"
