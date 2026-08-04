@@ -1,12 +1,13 @@
 import { AD_CATEGORIES } from "@/modules/ads/domain/entities"
 import { formatNumber } from "@/shared/utils"
+import clsx from "clsx"
 import styles from "./ads-card.module.scss"
 import cover from "./cover.jpg"
 import { AdsCardProps } from "./types"
 
 export const AdsCard = (props: AdsCardProps) => {
   return (
-    <div className={styles.card}>
+    <div className={clsx([styles.card, styles[`card-${props.viewMode}`]])}>
       <img className={styles.cover} src={cover} alt="cover" />
       <div className={styles.body}>
         <div className={styles.category}>{AD_CATEGORIES[props.item.category]}</div>

@@ -50,6 +50,8 @@
 .needs-revision {
   position: relative;
 
+  width: fit-content;
+
   margin-top: 4px;
 
   padding: 2px 8px 2px 22px;
@@ -76,4 +78,25 @@
 
     content: '';
   }
+}
+
+.card-list {
+  display: flex;
+}
+
+.card-list .cover {
+  max-width: 180px;
+}
+
+.card .title {
+  margin-top: 4px;
+}
+
+.card-list .category {
+  margin-top: 0;
+  padding: 0;
+
+  color: #848388;
+
+  border: none;
 }

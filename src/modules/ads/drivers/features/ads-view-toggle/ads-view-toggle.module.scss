@@ -1,0 +1,34 @@
+@use "@/ui/utils" as s;
+
+.conatainer {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+  padding: 8px;
+
+  background-color: #F4F4F6;
+  border-radius: 8px;
+}
+
+.button {
+  transition: color 0.2s;
+
+  @include s.hover {
+    color: var(--ant-blue);
+  }
+}
+
+.button-active {
+  color: var(--ant-blue);
+
+  @include s.hover {
+    color: var(--ant-color-base-text)
+  }
+}
+
+.divider {
+  width: 1px;
+  height: 100%;
+
+  background-color: #ffffff;
+}
