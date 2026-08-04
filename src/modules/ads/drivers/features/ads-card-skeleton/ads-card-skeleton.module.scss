@@ -1,4 +1,4 @@
-@use "@/ui/utils/files/shimmer" as s;
+@use "@/core/ui/utils/files/shimmer" as s;
 
 .card {
   height: 310px;
@@ -40,21 +40,9 @@
   @include s.shimmer;
 }
 
-.card-grid {
-  height: 310px;
-}
-
-.card-grid .cover {
-  height: 150px;
-}
-
-.card-grid .body {
-  box-sizing: border-box;
-  height: 160px;
-}
-
 .card-list {
   display: flex;
+  height: 140px;
 }
 
 .card-list .cover {
@@ -64,6 +52,11 @@
   aspect-ratio: 1 / 1;
 }
 
-.card .title {
+.card-list .body {
+  flex: 1;
+  min-width: 0;
+}
+
+.card-list .title {
   margin-top: 4px;
 }

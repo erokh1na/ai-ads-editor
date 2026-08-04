@@ -1,4 +1,4 @@
-import { AppAdCategory, AppAdsViewMode } from "@/modules/ads/domain/entities"
+import { ADS_BY_VIEW, AppAdCategory, AppAdsViewMode } from "@/modules/ads/domain/entities"
 import { AppAdsListInput } from "@/modules/ads/domain/port"
 import { adsApiClient } from "@/modules/ads/infrastructure/adapters"
 import { useSearchParams } from "react-router"
@@ -6,16 +6,18 @@ import { useSearchParams } from "react-router"
 export function useAdsList() {
   const [searchParams] = useSearchParams()
 
+  const view = searchParams.get("view") as AppAdsViewMode
+  const limit = view ? ADS_BY_VIEW[view] : ADS_BY_VIEW["grid"]
+  const page = +searchParams.get("page") || 1
+
   const filters: Partial<AppAdsListInput> = {
     search: searchParams.get("search"),
     categories: (searchParams.get("categories")?.split(",") as AppAdCategory[]) ?? [],
     needsRevision: searchParams.get("needsRevision") === "true" || undefined,
     sortDirection: (searchParams.get("sortDirection") as AppAdsListInput["sortDirection"]) || "desc",
-    limit: searchParams.get("view") === ("list" as AppAdsViewMode) ? 4 : 10,
-    skip: +searchParams.get("skip") || 0,
+    limit,
+    skip: (page - 1) * limit,
   }
-
-  const viewMode = searchParams.get("view") as AppAdsViewMode
 
   const query = adsApiClient.useList(filters)
   const data = query.data?.data ?? []
@@ -28,7 +30,7 @@ export function useAdsList() {
     query,
     data,
     total,
-    viewMode,
+    view,
     isLoading,
     skeletons,
   }

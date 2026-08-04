@@ -1,6 +1,6 @@
 import { useAdsList } from "@/modules/ads/applications/usecases"
+import { AdsCardSkeleton } from "@/modules/ads/drivers/features"
 import { AdsCard, AdsPagination } from "@/modules/ads/drivers/features/"
-import { AdsCardSkeleton } from "@/modules/ads/drivers/features/ads-card-skeleton/ads-card-skeleton"
 import clsx from "clsx"
 import styles from "./ads-list.module.scss"
 
@@ -9,10 +9,10 @@ export const AdsList = () => {
 
   return (
     <div className={styles.container}>
-      <div className={clsx(styles.list, styles[`list-${adsList.viewMode}`])}>
+      <div className={clsx(styles.list, styles[`list-${adsList.view}`])}>
         {adsList.isLoading
-          ? adsList.skeletons.map((_, index) => <AdsCardSkeleton key={index} viewMode={adsList.viewMode} />)
-          : adsList.data.map((item) => <AdsCard item={item} viewMode={adsList.viewMode} key={item.id} />)}
+          ? adsList.skeletons.map((_, index) => <AdsCardSkeleton key={index} view={adsList.view} />)
+          : adsList.data.map((item) => <AdsCard item={item} view={adsList.view} key={item.id} />)}
       </div>
       {!adsList.isLoading && <AdsPagination />}
     </div>

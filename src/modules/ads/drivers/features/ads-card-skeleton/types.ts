@@ -1,5 +1,5 @@
 import { AppAdsViewMode } from "@/modules/ads/domain/entities"
 
 export interface AdsCardSkeletonProps {
-  viewMode?: AppAdsViewMode
+  view?: AppAdsViewMode
 }

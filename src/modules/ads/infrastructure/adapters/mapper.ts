@@ -16,9 +16,9 @@ const reverseCategoryMap = {
 
 function toDomainAd(item: ServerAdsListResponse["items"][number]): AppAd {
   return {
-    id: item.title + item.category,
+    id: String(item.id),
     title: item.title,
-    price: item.price,
+    price: item.price || 0,
     category: categoryMap[item.category],
     needsRevision: item.needsRevision,
   }

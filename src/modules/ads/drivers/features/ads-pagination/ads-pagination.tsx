@@ -7,5 +7,5 @@ export const AdsPagination = () => {
 
   if (adsList.total <= adsPagination.pageSize) return null
 
-  return <Pagination current={adsPagination.page} total={adsList.total} onChange={adsPagination.setPage} />
+  return <Pagination current={adsPagination.page} total={adsList.total} pageSize={adsPagination.pageSize} onChange={adsPagination.setPage} />
 }

@@ -1,4 +1,4 @@
-import { useAdsSearch } from "@/modules/ads/applications/usecases/search"
+import { useAdsSearch } from "@/modules/ads/applications/usecases"
 import { Input } from "antd"
 
 export const AdsSearch = () => {

@@ -1,4 +1,5 @@
 export * from "./ads-card"
+export * from "./ads-card-skeleton"
 export * from "./ads-filter-bar"
 export * from "./ads-list"
 export * from "./ads-pagination"

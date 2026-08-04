@@ -7,7 +7,7 @@ import { AdsCardProps } from "./types"
 
 export const AdsCard = (props: AdsCardProps) => {
   return (
-    <div className={clsx([styles.card, styles[`card-${props.viewMode}`]])}>
+    <div className={clsx([styles.card, styles[`card-${props.view}`]])}>
       <img className={styles.cover} src={cover} alt="cover" />
       <div className={styles.body}>
         <div className={styles.category}>{AD_CATEGORIES[props.item.category]}</div>

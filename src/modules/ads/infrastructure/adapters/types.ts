@@ -1,6 +1,7 @@
 export type ServerAdCategory = "auto" | "electronics" | "real_estate"
 
 export interface ServerAd {
+  id: number
   title: string
   price: number | null
   category: ServerAdCategory

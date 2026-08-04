@@ -2,5 +2,5 @@ import { AppAd, AppAdsViewMode } from "@/modules/ads/domain/entities"
 
 export interface AdsCardProps {
   item: AppAd
-  viewMode?: AppAdsViewMode
+  view?: AppAdsViewMode
 }

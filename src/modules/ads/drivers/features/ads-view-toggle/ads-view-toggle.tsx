@@ -1,22 +1,22 @@
 import { useAdsView } from "@/modules/ads/applications/usecases"
 import { AppstoreOutlined, UnorderedListOutlined } from "@ant-design/icons"
 import clsx from "clsx"
-import styles from "./ads-view-toggle.module.scss"
+import style from "./ads-view-toggle.module.scss"
 
 export const AdsViewToggle = () => {
   const adsView = useAdsView()
 
   return (
-    <div className={styles.conatainer}>
+    <div className={style.container}>
       <button
-        className={clsx([styles.button, { [styles["button-active"]]: adsView.view === "grid" }])}
+        className={clsx([style.button, { [style["button-active"]]: adsView.view === "grid" }])}
         onClick={() => adsView.setView("grid")}
       >
         <AppstoreOutlined />
       </button>
-      <div className={styles.divider} />
+      <div className={style.divider} />
       <button
-        className={clsx([styles.button, { [styles["button-active"]]: adsView.view === "list" }])}
+        className={clsx([style.button, { [style["button-active"]]: adsView.view === "list" }])}
         onClick={() => adsView.setView("list")}
       >
         <UnorderedListOutlined />

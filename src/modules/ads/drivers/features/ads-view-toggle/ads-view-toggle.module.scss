@@ -1,6 +1,6 @@
-@use "@/ui/utils" as s;
+@use "@/core/ui/utils" as s;
 
-.conatainer {
+.container {
   display: flex;
   gap: 3px;
   align-items: center;
