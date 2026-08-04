@@ -1,5 +1,11 @@
+import { useAdsList, useAdsPagination } from "@/modules/ads/applications/usecases"
 import { Pagination } from "antd"
 
 export const AdsPagination = () => {
-  return <Pagination defaultCurrent={1} total={50} />
+  const adsPagination = useAdsPagination()
+  const adsList = useAdsList()
+
+  if (adsList.total <= adsPagination.pageSize) return null
+
+  return <Pagination current={adsPagination.page} total={adsList.total} onChange={adsPagination.setPage} />
 }

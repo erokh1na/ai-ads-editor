@@ -1,6 +1,6 @@
-import { AppAd } from "@/modules/ads/domain/entities"
+import { AppAd, AppAdsViewMode } from "@/modules/ads/domain/entities"
 
 export interface AdsCardProps {
   item: AppAd
-  viewMode?: "grid" | "list"
+  viewMode?: AppAdsViewMode
 }

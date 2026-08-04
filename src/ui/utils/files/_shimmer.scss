@@ -1,0 +1,17 @@
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@mixin shimmer {
+  background: linear-gradient(90deg, #f0f0f0 20%, #e8e8e8 40%, #e4e4e4 50%, #e8e8e8 60%, #f0f0f0 80%);
+  background-size: 400% 100%;
+  border-radius: 4px;
+
+  animation: shimmer 2.6s ease-in-out infinite;
+}

@@ -37,6 +37,7 @@ export function toServerAdsList(input: AppAdsListInput): ServerAdsListParams {
   return {
     q: input.search,
     limit: input.limit,
+    skip: input.skip,
     needsRevision: input.needsRevision,
     categories: input.categories?.map((category) => reverseCategoryMap[category]).join(","),
     sortColumn: input.sortColumn,
