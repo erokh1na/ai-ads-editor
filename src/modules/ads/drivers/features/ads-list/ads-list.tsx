@@ -1,8 +1,8 @@
 import { useAdsList } from "@/modules/ads/applications/usecases"
-import { AdsCardSkeleton } from "@/modules/ads/drivers/features"
-import { AdsCard, AdsPagination } from "@/modules/ads/drivers/features/"
+import { AdsPagination } from "@/modules/ads/drivers/features/"
 import clsx from "clsx"
 import styles from "./ads-list.module.scss"
+import { AdsCard, AdsCardSkeleton } from "./internal"
 
 export const AdsList = () => {
   const adsList = useAdsList()

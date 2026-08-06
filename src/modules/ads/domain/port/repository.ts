@@ -10,9 +10,15 @@ export interface AppAdsListInput {
   sortDirection?: "asc" | "desc"
 }
 
+export interface AppAdInput {
+  id: string
+}
+
 export interface AppAdsListOutput {
   data: AppAd[]
   meta: {
     total: number
   }
 }
+
+export interface AppAdOutput {}

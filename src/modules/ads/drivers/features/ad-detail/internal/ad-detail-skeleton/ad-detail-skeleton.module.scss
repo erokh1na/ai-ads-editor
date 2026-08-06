@@ -1,0 +1,114 @@
+@use "@/core/ui/utils/files/shimmer" as s;
+
+.detail {
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.title {
+  width: 320px;
+  height: 32px;
+
+  @include s.shimmer;
+}
+
+.button {
+  width: 180px;
+  height: 40px;
+
+  @include s.shimmer;
+}
+
+.price {
+  width: 140px;
+  height: 28px;
+
+  @include s.shimmer;
+}
+
+.dates {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.date {
+  width: 220px;
+  height: 16px;
+
+  @include s.shimmer;
+}
+
+.body {
+  display: grid;
+  grid-template-columns: 480px 1fr;
+  gap: 24px;
+  margin-top: 16px;
+}
+
+.cover {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+
+  @include s.shimmer;
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 32px;
+}
+
+.description-title {
+  width: 140px;
+  height: 22px;
+
+  @include s.shimmer;
+}
+
+.description-text {
+  width: 100%;
+  height: 16px;
+
+  @include s.shimmer;
+}
+
+.description-text-short {
+  width: 60%;
+  height: 16px;
+
+  @include s.shimmer;
+}
+
+.specs-title {
+  width: 160px;
+  height: 22px;
+  margin-bottom: 16px;
+
+  @include s.shimmer;
+}
+
+.specs-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.specs-row {
+  width: 100%;
+  height: 18px;
+
+  @include s.shimmer;
+}

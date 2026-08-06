@@ -1,9 +1,9 @@
 import { fetcherClient } from "@/core/fetcher"
-import { AppAdsListInput } from "@/modules/ads/domain/port"
+import { AppAdInput, AppAdsListInput } from "@/modules/ads/domain/port"
 import { useQuery } from "@tanstack/react-query"
 import { adsApiKeys } from "./keys"
-import { toDomainAdsList, toServerAdsList } from "./mapper"
-import type { ServerAdsListResponse } from "./types"
+import { toDomainAd, toDomainAdsList, toServerAdsList } from "./mapper"
+import type { ServerAdResponse, ServerAdsListResponse } from "./types"
 
 const useList = (input: AppAdsListInput) => {
   return useQuery({
@@ -14,6 +14,16 @@ const useList = (input: AppAdsListInput) => {
   })
 }
 
+const useDetail = (input: AppAdInput) => {
+  return useQuery({
+    queryKey: adsApiKeys.detail(input),
+    queryFn: () => fetcherClient.get<ServerAdResponse>(`/items/${input.id}`),
+    select: (response) => toDomainAd(response.data),
+    staleTime: 30_000,
+  })
+}
+
 export const adsApiClient = {
   useList,
+  useDetail,
 }

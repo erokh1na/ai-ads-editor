@@ -1,3 +1,4 @@
+export * from "./ad-detail-usecase"
 export * from "./ads-filter-usecase"
 export * from "./ads-list-usecase"
 export * from "./ads-pagination-usecase"

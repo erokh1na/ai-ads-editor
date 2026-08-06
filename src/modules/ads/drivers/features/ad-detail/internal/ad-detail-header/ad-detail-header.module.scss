@@ -1,0 +1,37 @@
+@use "@/core/ui/utils/files/typography" as t;
+
+.header {
+  display: flex;
+  gap: 40px;
+  justify-content: space-between;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  &:last-child {
+    text-align: right;
+  }
+}
+
+.title,
+.price {
+  @include t.h2-medium
+}
+
+.button {
+  width: fit-content;
+}
+
+.dates {
+  display: flex;
+  flex-direction: column;
+}
+
+.date {
+  color: #848388;
+
+  @include t.body;
+}

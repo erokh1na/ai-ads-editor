@@ -1,4 +1,4 @@
-import { ADS_BY_VIEW, AppAdCategory, AppAdsViewMode } from "@/modules/ads/domain/entities"
+import { ADS_BY_VIEW, AppAdsCategory, AppAdsViewMode } from "@/modules/ads/domain/entities"
 import { AppAdsListInput } from "@/modules/ads/domain/port"
 import { adsApiClient } from "@/modules/ads/infrastructure/adapters"
 import { useSearchParams } from "react-router"
@@ -12,7 +12,7 @@ export function useAdsList() {
 
   const filters: Partial<AppAdsListInput> = {
     search: searchParams.get("search"),
-    categories: (searchParams.get("categories")?.split(",") as AppAdCategory[]) ?? [],
+    categories: (searchParams.get("categories")?.split(",") as AppAdsCategory[]) ?? [],
     needsRevision: searchParams.get("needsRevision") === "true" || undefined,
     sortDirection: (searchParams.get("sortDirection") as AppAdsListInput["sortDirection"]) || "desc",
     limit,

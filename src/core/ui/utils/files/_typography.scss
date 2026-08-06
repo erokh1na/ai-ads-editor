@@ -1,3 +1,15 @@
+@mixin h2-medium {
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 40px;
+}
+
+@mixin h3-medium {
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 28px;
+}
+
 @mixin h5 {
   font-weight: 400;
   font-size: 16px;

@@ -414,10 +414,15 @@
     "id": 32,
     "category": "auto",
     "title": "Daewoo Nexia",
-    "description": "",
+    "description": "Продаю Daewoo Nexia в хорошем состоянии, вложений не требует, все вопросы по телефону.",
     "price": 185000,
     "createdAt": "2026-03-10T00:00:00.000Z",
     "updatedAt": "2026-03-10T00:00:00.000Z",
-    "params": {}
+    "params": {
+      "brand": "Daewoo",
+      "model": "Nexia",
+      "yearOfManufacture": 2008,
+      "transmission": "manual"
+    }
   }
 ]

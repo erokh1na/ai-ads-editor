@@ -1,6 +1,7 @@
 @use "@/core/ui/utils/files/typography" as t;
 
 .card {
+  display: block;
   overflow: hidden;
 
   background-color: #ffffff;
