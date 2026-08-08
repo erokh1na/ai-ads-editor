@@ -1,0 +1,15 @@
+.notification-success {
+  background-color: #f0fdf4 !important;
+
+  :global(.ant-notification-notice-icon) {
+    color: #52c41a;
+  }
+}
+
+.notification-error {
+  background-color: #fef2f2 !important;
+
+  :global(.ant-notification-notice-icon) {
+    color: #ff4d4f;
+  }
+}

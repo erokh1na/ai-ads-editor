@@ -20,8 +20,18 @@ fastify.use((_, __, next) =>
 );
 
 // Настройка CORS
-fastify.use((_, reply, next) => {
+fastify.use((request, reply, next) => {
   reply.setHeader('Access-Control-Allow-Origin', '*');
+  reply.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
+  reply.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  reply.setHeader('Access-Control-Max-Age', '86400');
+
+  if (request.method === 'OPTIONS') {
+    reply.statusCode = 204;
+    reply.end();
+    return;
+  }
+
   next();
 });
 
@@ -125,7 +135,7 @@ interface ItemUpdateRequest extends Fastify.RequestGenericInterface {
   };
 }
 
-fastify.put<ItemUpdateRequest>('/items/:id', (request, reply) => {
+const updateItemHandler: Fastify.RouteHandlerMethod<ItemUpdateRequest> = (request, reply) => {
   const itemId = Number(request.params.id);
 
   if (!Number.isFinite(itemId)) {
@@ -166,7 +176,10 @@ fastify.put<ItemUpdateRequest>('/items/:id', (request, reply) => {
 
     throw error;
   }
-});
+};
+
+fastify.put<ItemUpdateRequest>('/items/:id', updateItemHandler);
+fastify.post<ItemUpdateRequest>('/items/:id', updateItemHandler);
 
 const port = Number(process.env.PORT) || 8080;
 

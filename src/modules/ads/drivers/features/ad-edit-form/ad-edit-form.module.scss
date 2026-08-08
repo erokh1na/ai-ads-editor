@@ -1,0 +1,41 @@
+@use "@/core/ui/utils/files/typography" as t;
+
+.form {
+  padding: 32px;
+
+  background-color: #ffffff;
+  border-radius: 16px;
+}
+
+.title {
+  margin-bottom: 24px;
+
+  @include t.h2-medium
+}
+
+.divider {
+  height: 1px;
+  margin: 20px 0;
+
+  background-color: #f0f0f0;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-label-strong {
+  @include t.body-strong
+}
+
+.form-category-select {
+  width: 256px !important;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 32px;
+}

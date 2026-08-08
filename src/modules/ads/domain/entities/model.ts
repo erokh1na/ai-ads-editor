@@ -36,6 +36,8 @@ export interface AppAdsCategoryConfig<T extends AppAdsCategory> {
   label: string
   paramLabels: Record<keyof AppAdsParamsMap[T], string>
   valueLabels?: Record<string, string>
+  paramOptions?: Record<string, string[]>
+  numericParams?: string[]
 }
 
 interface AppAdBase {

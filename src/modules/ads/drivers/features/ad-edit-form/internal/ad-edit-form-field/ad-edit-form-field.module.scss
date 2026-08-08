@@ -1,0 +1,32 @@
+@use "@/core/ui/utils/files/typography" as t;
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-label-strong {
+  @include t.body-strong
+}
+
+.form-label {
+  @include t.body
+}
+
+.form-select,
+.form-input {
+  width: 576px;
+  max-width: 100%;
+}
+
+.form-textarea {
+  width: 942px;
+  max-width: 100%;
+}
+
+.button-group {
+  display: flex;
+  gap: 12px;
+  margin-top: 32px;
+}

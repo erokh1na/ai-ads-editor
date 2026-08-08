@@ -1,8 +1,8 @@
 import { fetcherClient } from "@/core/fetcher"
-import { AppAdInput, AppAdsListInput } from "@/modules/ads/domain/port"
-import { useQuery } from "@tanstack/react-query"
+import { AppAdInput, AppAdsListInput, AppAdsUpdateParams } from "@/modules/ads/domain/port"
+import { useMutation, useQuery } from "@tanstack/react-query"
 import { adsApiKeys } from "./keys"
-import { toDomainAd, toDomainAdsList, toServerAdsList } from "./mapper"
+import { toDomainAd, toDomainAdsList, toServerAdsList, toServerAdUpdate } from "./mapper"
 import type { ServerAdResponse, ServerAdsListResponse } from "./types"
 
 const useList = (input: AppAdsListInput) => {
@@ -23,7 +23,17 @@ const useDetail = (input: AppAdInput) => {
   })
 }
 
+const useUpdate = () => {
+  return useMutation({
+    mutationFn: (params: AppAdsUpdateParams) => {
+      const { id, ...body } = params
+      return fetcherClient.post(`/items/${id}`, toServerAdUpdate(body))
+    },
+  })
+}
+
 export const adsApiClient = {
   useList,
   useDetail,
+  useUpdate,
 }

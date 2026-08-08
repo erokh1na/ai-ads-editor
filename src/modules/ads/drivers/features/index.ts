@@ -1,4 +1,5 @@
 export * from "./ad-detail"
+export * from "./ad-edit-form"
 export * from "./ads-filter-bar"
 export * from "./ads-list"
 export * from "./ads-pagination"

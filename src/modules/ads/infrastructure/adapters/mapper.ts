@@ -1,16 +1,18 @@
 import {
+  AD_CATEGORY_CONFIG,
   AppAd,
   AppAdsAutoParams,
   AppAdsCategory,
   AppAdsElectronicsParams,
   AppAdsRealtyParams,
 } from "@/modules/ads/domain/entities"
-import { AppAdsListInput, AppAdsListOutput } from "@/modules/ads/domain/port"
+import { AppAdsListInput, AppAdsListOutput, AppAdsUpdateParams } from "@/modules/ads/domain/port"
 import {
   ServerAd,
   ServerAdCategory,
   ServerAdsListParams,
   ServerAdsListResponse,
+  ServerAdUpdateBody,
   ServerAutoParams,
   ServerElectronicsParams,
   ServerRealEstateParams,
@@ -101,4 +103,23 @@ export function toServerAdsList(input: AppAdsListInput): ServerAdsListParams {
     sortColumn: input.sortColumn,
     sortDirection: input.sortDirection,
   }
+}
+
+export const toServerAdUpdate = (input: Omit<AppAdsUpdateParams, "id">): ServerAdUpdateBody => {
+  const numericKeys = AD_CATEGORY_CONFIG[input.category].numericParams
+
+  const params = Object.fromEntries(
+    Object.entries(input.params).map(([key, value]) => [
+      key,
+      value != null && numericKeys.includes(key) ? Number(value) : value,
+    ]),
+  )
+
+  return {
+    category: APP_TO_SERVER_CATEGORY[input.category],
+    title: input.title,
+    price: Number(input.price),
+    description: input.description,
+    params,
+  } as ServerAdUpdateBody
 }

@@ -56,4 +56,11 @@ export interface ServerAdsListResponse {
   total: number
 }
 
+export type ServerAdUpdateBody = Pick<ServerAdBase, "title" | "price" | "description"> &
+  (
+    | { category: "auto"; params: ServerAutoParams }
+    | { category: "real_estate"; params: ServerRealEstateParams }
+    | { category: "electronics"; params: ServerElectronicsParams }
+  )
+
 export type ServerAdResponse = ServerAd
