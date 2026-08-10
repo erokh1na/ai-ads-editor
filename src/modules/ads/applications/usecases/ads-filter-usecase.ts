@@ -1,4 +1,4 @@
-import { AppAdCategory } from "@/modules/ads/domain/entities"
+import { AppAdsCategory } from "@/modules/ads/domain/entities"
 import { useUpdateSearchParams } from "@/shared/hooks"
 import { useSearchParams } from "react-router"
 
@@ -6,10 +6,10 @@ export function useFilter() {
   const [searchParams] = useSearchParams()
   const updateSearchParams = useUpdateSearchParams()
 
-  const categories = (searchParams.get("categories")?.split(",") as AppAdCategory[]) ?? []
+  const categories = (searchParams.get("categories")?.split(",").filter(Boolean) as AppAdsCategory[]) ?? []
   const needsRevision = searchParams.get("needsRevision") === "true"
 
-  function setCategories(categories: AppAdCategory[]) {
+  function setCategories(categories: AppAdsCategory[]) {
     updateSearchParams({ categories: categories.length > 0 ? categories.join(",") : undefined })
   }
 

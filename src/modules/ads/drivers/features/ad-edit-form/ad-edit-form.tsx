@@ -1,4 +1,5 @@
 import { useAdEditForm } from "@/modules/ads/applications/usecases"
+import type { AppAdsCategory } from "@/modules/ads/domain/entities"
 import { AD_CATEGORIES, AD_CATEGORY_CONFIG } from "@/modules/ads/domain/entities"
 import { Button } from "antd"
 import { FormProvider } from "react-hook-form"
@@ -8,9 +9,10 @@ import { AdEditFormField } from "./internal"
 export const AdEditForm = () => {
   const adEditForm = useAdEditForm()
 
-  if (!adEditForm.query.data) return null
+  const category = (adEditForm.methods.watch("category") as AppAdsCategory) || adEditForm.query.data?.category || "auto"
+  const categoryParams = AD_CATEGORY_CONFIG[category]
 
-  const config = AD_CATEGORY_CONFIG[adEditForm.query.data.category]
+  if (!adEditForm.query.data) return null
 
   const categoriesOptions = Object.entries(AD_CATEGORIES).map(([key, value]) => ({
     label: value,
@@ -32,36 +34,47 @@ export const AdEditForm = () => {
     {
       key: "title",
       divider: true,
-      field: { type: "input" as const, name: "title", label: "Название", required: true },
+      field: {
+        type: "input" as const,
+        name: "title",
+        label: "Название",
+        required: true,
+      },
     },
     {
       key: "price",
       divider: true,
-      field: { type: "input" as const, name: "price", label: "Цена", required: true },
+      field: {
+        type: "input" as const,
+        name: "price",
+        label: "Цена",
+        required: true,
+        numeric: true,
+      },
     },
   ]
+
+  const paramsFields = Object.entries(categoryParams).map(([key, config]) => ({
+    key,
+    field: {
+      type: config.options ? ("select" as const) : ("input" as const),
+      name: `params.${key}`,
+      label: config.label,
+      required: key === "type",
+      options: config.options,
+      numeric: config.numeric || null,
+    },
+  }))
 
   const descriptionField = {
     key: "description",
     divider: false,
-    field: { type: "textarea" as const, name: "description", label: "Описание" },
+    field: {
+      type: "textarea" as const,
+      name: "description",
+      label: "Описание",
+    },
   }
-
-  const specFields = Object.entries(config.paramLabels).map(([key, label]) => {
-    const options = config.paramOptions?.[key]
-    const field = options
-      ? {
-          type: "select" as const,
-          name: `params.${key}`,
-          label,
-          options: options.map((optionKey) => ({
-            label: config.valueLabels?.[optionKey] ?? optionKey,
-            value: optionKey,
-          })),
-        }
-      : { type: "input" as const, name: `params.${key}`, label }
-    return { key, field }
-  })
 
   return (
     <FormProvider {...adEditForm.methods}>
@@ -77,7 +90,7 @@ export const AdEditForm = () => {
 
         <div className={styles["form-group"]}>
           <p className={styles["form-label-strong"]}>Характеристики</p>
-          {specFields.map(({ key, field }) => (
+          {paramsFields.map(({ key, field }) => (
             <AdEditFormField key={key} {...field} />
           ))}
         </div>

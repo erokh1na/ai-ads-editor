@@ -11,7 +11,11 @@ export function useAdsSearch() {
   useEffect(() => {
     const trimmed = search.trim()
 
-    if (trimmed.length < 3) return
+    if (trimmed.length < 3) {
+      if (searchParams.get("search")) updateSearchParams({ search: undefined })
+
+      return
+    }
 
     const timeout = setTimeout(() => {
       updateSearchParams({ search: trimmed || undefined })

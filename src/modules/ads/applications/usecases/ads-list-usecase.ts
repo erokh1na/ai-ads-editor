@@ -12,7 +12,7 @@ export function useAdsList() {
 
   const filters: Partial<AppAdsListInput> = {
     search: searchParams.get("search"),
-    categories: (searchParams.get("categories")?.split(",") as AppAdsCategory[]) ?? [],
+    categories: (searchParams.get("categories")?.split(",").filter(Boolean) as AppAdsCategory[]) ?? [],
     needsRevision: searchParams.get("needsRevision") === "true" || undefined,
     sortDirection: (searchParams.get("sortDirection") as AppAdsListInput["sortDirection"]) || "desc",
     limit,

@@ -9,7 +9,7 @@ export const useAdsView = () => {
   const view = (searchParams.get("view") as AppAdsViewMode) || "grid"
 
   function setView(mode: AppAdsViewMode) {
-    updateSearchParams({ view: mode || undefined, page: undefined, skip: undefined })
+    updateSearchParams({ view: mode, page: undefined, skip: undefined })
   }
 
   return {

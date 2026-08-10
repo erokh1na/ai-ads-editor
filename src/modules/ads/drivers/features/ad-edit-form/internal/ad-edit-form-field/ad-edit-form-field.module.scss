@@ -6,8 +6,20 @@
   gap: 8px;
 }
 
-.form-label-strong {
+.form-label {
+  display: flex;
+}
+
+.form-label-icon {
+  margin-right: 4px;
+}
+
+.form-label-text {
   @include t.body-strong
+}
+
+.required-icon {
+  margin-right: 4px;
 }
 
 .form-label {
@@ -29,4 +41,10 @@
   display: flex;
   gap: 12px;
   margin-top: 32px;
+}
+
+.form-error {
+  color: red;
+
+  @include t.body-small
 }

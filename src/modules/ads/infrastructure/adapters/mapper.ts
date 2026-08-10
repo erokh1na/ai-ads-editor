@@ -106,19 +106,16 @@ export function toServerAdsList(input: AppAdsListInput): ServerAdsListParams {
 }
 
 export const toServerAdUpdate = (input: Omit<AppAdsUpdateParams, "id">): ServerAdUpdateBody => {
-  const numericKeys = AD_CATEGORY_CONFIG[input.category].numericParams
+  const categoryConfig = AD_CATEGORY_CONFIG[input.category]
 
   const params = Object.fromEntries(
-    Object.entries(input.params).map(([key, value]) => [
-      key,
-      value != null && numericKeys.includes(key) ? Number(value) : value,
-    ]),
+    Object.entries(input.params).map(([key, value]) => [key, value && categoryConfig[key]?.numeric ? +value : value]),
   )
 
   return {
     category: APP_TO_SERVER_CATEGORY[input.category],
     title: input.title,
-    price: Number(input.price),
+    price: +input.price,
     description: input.description,
     params,
   } as ServerAdUpdateBody

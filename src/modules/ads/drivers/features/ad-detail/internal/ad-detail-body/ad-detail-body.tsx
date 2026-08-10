@@ -4,22 +4,18 @@ import { AdDetailBodyProps } from "./types"
 import cover from "/product.jpg"
 
 export const AdDetailBody = (props: AdDetailBodyProps) => {
-  const config = AD_CATEGORY_CONFIG[props.item.category]
-  const specs = Object.entries(props.item.params).reduce(
-    (acc, [key, value]) => {
-      if (value) {
-        acc.filled.push([key, value])
-      } else {
-        acc.missed.push(key)
-      }
+  const categoryParams = AD_CATEGORY_CONFIG[props.item.category]
+  const paramEntries = Object.entries(props.item.params)
 
-      return acc
-    },
-    {
-      filled: [],
-      missed: [],
-    },
-  )
+  const filled = paramEntries.filter(([, value]) => value)
+
+  const missed = [
+    ...paramEntries.filter(([, value]) => !value).map(([key]) => categoryParams[key].label),
+    ...(props.item.description ? [] : ["Описание"]),
+  ]
+
+  const formatValue = (key: string, value: string | number) =>
+    categoryParams[key].options?.find((option) => option.value === value)?.label ?? value
 
   return (
     <div className={styles.body}>
@@ -33,30 +29,28 @@ export const AdDetailBody = (props: AdDetailBodyProps) => {
         )}
       </div>
       <div className={styles.column}>
-        {specs.missed.length > 0 && (
+        {missed.length > 0 && (
           <div className={styles.disclaimer}>
             <h3 className={styles["disclaimer-title"]}>Требуются доработки</h3>
             <p className={styles["disclaimer-description"]}>У объявления не заполнены поля</p>
             <ul className={styles["disclaimer-list"]}>
-              {specs.missed.map((key) => (
-                <li className={styles["disclaimer-list-item"]} key={key}>
-                  {config.paramLabels[key]}
+              {missed.map((label) => (
+                <li className={styles["disclaimer-list-item"]} key={label}>
+                  {label}
                 </li>
               ))}
             </ul>
           </div>
         )}
 
-        {specs.filled.length > 0 && (
+        {filled.length > 0 && (
           <div className={styles.specs}>
             <h3 className={styles["specs-title"]}>Характеристики</h3>
             <div className={styles["specs-body"]}>
-              {specs.filled.map(([key, value]) => (
+              {filled.map(([key, value]) => (
                 <div key={key} className={styles["specs-row"]}>
-                  <span className={styles["specs-label"]}>
-                    {config.paramLabels[key as keyof typeof config.paramLabels]}
-                  </span>
-                  <span className={styles["specs-value"]}>{config.valueLabels?.[value as string] ?? value}</span>
+                  <span className={styles["specs-label"]}>{categoryParams[key].label}</span>
+                  <span className={styles["specs-value"]}>{formatValue(key, value)}</span>
                 </div>
               ))}
             </div>

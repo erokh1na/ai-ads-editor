@@ -26,19 +26,16 @@ export interface AppAdsElectronicsParams {
   color?: string
 }
 
-export interface AppAdsParamsMap {
-  auto: AppAdsAutoParams
-  realty: AppAdsRealtyParams
-  electro: AppAdsElectronicsParams
+export type AppAdsParamConfig = {
+  label: string
+  numeric?: boolean
+  options?: {
+    label: string
+    value: string
+  }[]
 }
 
-export interface AppAdsCategoryConfig<T extends AppAdsCategory> {
-  label: string
-  paramLabels: Record<keyof AppAdsParamsMap[T], string>
-  valueLabels?: Record<string, string>
-  paramOptions?: Record<string, string[]>
-  numericParams?: string[]
-}
+export type AppAdsCategoryConfig = Record<string, AppAdsParamConfig>
 
 interface AppAdBase {
   id: string

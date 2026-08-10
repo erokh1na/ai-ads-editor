@@ -10,7 +10,7 @@ export function useAdsPagination() {
   const page = Number(searchParams.get("page")) || 1
 
   const setPage = (newPage: number) => {
-    updateSearchParams({ page: String(newPage) || undefined })
+    updateSearchParams({ page: String(newPage) })
   }
 
   return {
