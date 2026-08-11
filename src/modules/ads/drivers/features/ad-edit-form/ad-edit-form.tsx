@@ -4,7 +4,7 @@ import { AD_CATEGORIES, AD_CATEGORY_CONFIG } from "@/modules/ads/domain/entities
 import { Button } from "antd"
 import { FormProvider } from "react-hook-form"
 import styles from "./ad-edit-form.module.scss"
-import { AdEditFormField } from "./internal"
+import { AdEditFormField, AdEditFormSkeleton } from "./internal"
 
 export const AdEditForm = () => {
   const adEditForm = useAdEditForm()
@@ -12,7 +12,7 @@ export const AdEditForm = () => {
   const category = (adEditForm.methods.watch("category") as AppAdsCategory) || adEditForm.query.data?.category || "auto"
   const categoryParams = AD_CATEGORY_CONFIG[category]
 
-  if (!adEditForm.query.data) return null
+  if (!adEditForm.query.data) return <AdEditFormSkeleton />
 
   const categoriesOptions = Object.entries(AD_CATEGORIES).map(([key, value]) => ({
     label: value,
@@ -74,6 +74,7 @@ export const AdEditForm = () => {
       name: "description",
       label: "Описание",
     },
+    popover: "description",
   }
 
   return (
@@ -97,7 +98,7 @@ export const AdEditForm = () => {
 
         <div className={styles.divider} />
 
-        <AdEditFormField {...descriptionField.field} />
+        <AdEditFormField {...descriptionField.field} popover={descriptionField.popover} />
         <div className={styles["button-group"]}>
           <Button type="primary" htmlType="submit" disabled={!adEditForm.isValid} loading={adEditForm.isSubmitting}>
             Сохранить

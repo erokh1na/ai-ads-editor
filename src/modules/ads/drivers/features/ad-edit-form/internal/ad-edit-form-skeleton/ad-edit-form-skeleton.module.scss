@@ -1,0 +1,78 @@
+@use "@/core/ui/utils/files/shimmer" as s;
+
+.title {
+  width: 320px;
+  height: 32px;
+  margin-bottom: 24px;
+
+  @include s.shimmer;
+}
+
+.divider {
+  height: 1px;
+  margin: 20px 0;
+
+  background-color: #f0f0f0;
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  width: 120px;
+  height: 16px;
+
+  @include s.shimmer;
+}
+
+.select {
+  width: 256px;
+  height: 32px;
+
+  @include s.shimmer;
+}
+
+.input {
+  width: 576px;
+  max-width: 100%;
+  height: 32px;
+
+  @include s.shimmer;
+}
+
+.textarea {
+  width: 942px;
+  max-width: 100%;
+  height: 96px;
+
+  @include s.shimmer;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-group-title {
+  width: 160px;
+  height: 20px;
+
+  @include s.shimmer;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 32px;
+}
+
+.button {
+  width: 100px;
+  height: 38px;
+
+  @include s.shimmer;
+}

@@ -1,11 +1,11 @@
 import { useFilter } from "@/modules/ads/applications/usecases"
-import { AD_CATEGORIES, type AppAdCategory } from "@/modules/ads/domain/entities"
+import { AD_CATEGORIES, type AppAdsCategory } from "@/modules/ads/domain/entities"
 import { Button, Checkbox, Switch } from "antd"
 import styles from "./ads-filter-bar.module.scss"
 
 export const AdsFilterBar = () => {
   const adsFilter = useFilter()
-  const checkboxesOptions = (Object.entries(AD_CATEGORIES) as [AppAdCategory, string][]).map(([value, label]) => ({
+  const checkboxesOptions = (Object.entries(AD_CATEGORIES) as [AppAdsCategory, string][]).map(([value, label]) => ({
     value,
     label,
   }))

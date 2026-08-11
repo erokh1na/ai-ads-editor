@@ -48,3 +48,11 @@
 
   @include t.body-small
 }
+
+.form-input-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 10px;
+  max-width: 950px;
+}

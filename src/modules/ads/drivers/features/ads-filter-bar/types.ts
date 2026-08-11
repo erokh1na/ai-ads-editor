@@ -1,6 +1,6 @@
-import { AppAdCategory } from "@/modules/ads/domain/entities"
+import { AppAdsCategory } from "@/modules/ads/domain/entities"
 
 export interface AppCategoryCheckbox {
-  value: AppAdCategory
+  value: AppAdsCategory
   label: string
 }
