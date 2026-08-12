@@ -1,7 +1,7 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node"
 import { ZodError, treeifyError } from "zod"
-import { generateDescription } from "../../src/server/src/groq-ai-repository.js"
-import { AppAiDescriptionInputSchema } from "../../src/server/src/validation.js"
+import { generatePrice } from "../../src/server/src/groq-ai-repository.js"
+import { AppAiPriceInputSchema } from "../../src/server/src/validation.js"
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== "POST") {
@@ -10,8 +10,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
-    const { item } = AppAiDescriptionInputSchema.parse(req.body)
-    const data = await generateDescription(item)
+    const { item } = AppAiPriceInputSchema.parse(req.body)
+    const data = await generatePrice(item)
     res.status(200).json({ data })
   } catch (error) {
     if (error instanceof ZodError) {

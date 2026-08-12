@@ -1,6 +1,6 @@
 import { z } from "zod"
-import { ITEM_CATEGORIES } from "./constants.ts"
-import { ItemSortColumn, SortDirection } from "./types.ts"
+import { ITEM_CATEGORIES } from "./constants.js"
+import { ItemSortColumn, SortDirection } from "./types.js"
 
 const AutoTransmissionSchema = z.enum(["automatic", "manual"])
 
